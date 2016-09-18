@@ -2,3 +2,6 @@
 [user]
   name = rabinzon
   email = ildarrazin@gmail.com
+
+[push]
+  default = simple  
