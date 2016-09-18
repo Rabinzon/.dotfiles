@@ -1,8 +1,12 @@
-sublime_text_ppa: 'ppa:webupd8team/sublime-text-3'
+ppa: 
+  - 'ppa:webupd8team/sublime-text-3'
+  - 'ppa:ubuntu-lxc/lxd-stable'
+
 apt:
   - sublime-text-installer
   - nodejs-legacy
   - npm
+  - golang
   - docker.io
   - git
   - vagrant
