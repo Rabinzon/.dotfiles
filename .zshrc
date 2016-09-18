@@ -86,6 +86,7 @@ BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-default-dark.sh"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+  alias git=hub
   alias gst="git status"
   alias gc="git commit"
   alias gcv="git commit -v"
