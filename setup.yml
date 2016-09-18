@@ -2,10 +2,11 @@
   tasks:
     - include_vars: vars.yml
 
-    - name: Add sublime text PPA
+    - name: Add PPA
       apt_repository:
-        repo: '{{sublime_text_ppa}}'
+        repo: '{{item}}'
         update_cache: yes
+      with_items: '{{ppa}}'  
       become: yes
 
     - name: install with apt
@@ -42,3 +43,10 @@
       get_url:
         url: https://packagecontrol.io/Package%20Control.sublime-package
         dest: ~/.config/sublime-text-3/Installed Packages/Package Control.sublime-package
+
+    - name: Install Hub
+      git: repo=https://github.com/github/hub.git dest=~/hub/
+
+    - name: Buid Hub
+      command: bash -c 'cd ~/hub/ && script/build -o ~/bin/hub'  
+    
