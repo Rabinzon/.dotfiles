@@ -5,12 +5,13 @@
     - name: Add sublime text PPA
       apt_repository:
         repo: '{{sublime_text_ppa}}'
-        update_cache: no
+        update_cache: yes
       become: yes
 
     - name: install with apt
       apt:
         name: '{{item}}'
+        state: installed
       with_items: '{{apt}}'
       become: yes
 
@@ -26,12 +27,19 @@
       become: yes
 
     - name: install oh my zsh
-      command: bash -c 'export ZSH="$HOME/.dotfiles/.zsh"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
+      command: bash -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"; chsh -s $(which zsh)'
+      become: yes 
+
+    - name: make zsh config 
+      copy: src=~/.dotfiles/.zshrc dest=~/ mode=0777
+      become: yes
+
+    - name: make default oh my zsh
+      command: bash -c 'chsh -s $(which zsh)'
       become: yes
     
-    - name: configurate vimrc
-      command: bash -c 'ln -s $HOME/.vim/vimrc $HOME/.dotfiles/.vimrc'
-      become: yes
+    - name: vim config
+      file: src=~/.dotfiles/.vimrc dest=~/.vimrc state=link force=true
 
     - name: Install PackageControl for Sublime
       get_url:
