@@ -1,0 +1,39 @@
+- hosts: localhost
+  tasks:
+    - include_vars: vars.yml
+
+    - name: Add sublime text PPA
+      apt_repository:
+        repo: '{{sublime_text_ppa}}'
+        update_cache: no
+      become: yes
+
+    - name: install with apt
+      apt:
+        name: '{{item}}'
+      with_items: '{{apt}}'
+      become: yes
+
+    - name: install with npm
+      npm: 
+        name: '{{item}}' 
+        global: yes
+      with_items: '{{npm}}'
+      become: yes
+
+    - name: install nodejs using n
+      command: bash -c 'n stable'
+      become: yes
+
+    - name: install oh my zsh
+      command: bash -c 'export ZSH="$HOME/.dotfiles/.zsh"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
+      become: yes
+    
+    - name: configurate vimrc
+      command: bash -c 'ln -s $HOME/.vim/vimrc $HOME/.dotfiles/.vimrc'
+      become: yes
+
+    - name: Install PackageControl for Sublime
+      get_url:
+        url: https://packagecontrol.io/Package%20Control.sublime-package
+        dest: ~/.config/sublime-text-3/Installed Packages/Package Control.sublime-package

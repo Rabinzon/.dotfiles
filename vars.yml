@@ -1,0 +1,18 @@
+sublime_text_ppa: 'ppa:webupd8team/sublime-text-3'
+apt:
+  - sublime-text-installer
+  - npm
+  - docker
+  - git
+  - hub
+  - vagrant
+  - zsh
+  - virtualbox
+  - vim
+  
+npm:
+  - npm
+  - n
+
+username: rabinzon
+email: ildarrazin@gmail.com
