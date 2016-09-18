@@ -30,16 +30,13 @@
       command: bash -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"; chsh -s $(which zsh)'
       become: yes 
 
-    - name: make zsh config 
-      copy: src=~/.dotfiles/.zshrc dest=~/ mode=0777
-      become: yes
-
     - name: make default oh my zsh
       command: bash -c 'chsh -s $(which zsh)'
       become: yes
     
-    - name: vim config
-      file: src=~/.dotfiles/.vimrc dest=~/.vimrc state=link force=true
+    - name: setup config files
+      file: src=~/.dotfiles/{{item}} dest=~/{{item}} state=link force=true  
+      with_items: '{{configs}}'
 
     - name: Install PackageControl for Sublime
       get_url:
