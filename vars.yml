@@ -13,6 +13,7 @@ apt:
   - zsh
   - virtualbox
   - vim
+  - gitk
   
 npm:
   - npm
