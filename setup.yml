@@ -48,5 +48,6 @@
       git: repo=https://github.com/github/hub.git dest=~/hub/
 
     - name: Buid Hub
-      command: bash -c 'cd ~/hub/ && script/build -o ~/bin/hub'  
+      command: bash -c 'cd ~/hub/ && ./script/build -o ~/bin/hub'
+      become: yes 
     
