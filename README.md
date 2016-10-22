@@ -9,3 +9,5 @@ $ git clone git@github.com:Rabinzon/.dotfiles.git
 $ cd .dotfiles
 $ sudo ansible-playbook setup.yml
 ```
+One line command:
+`sudo apt-get update && sudo apt-get install ansible git && git clone git@github.com:Rabinzon/.dotfiles.git && cd .dotfiles && sudo ansible-playbook setup.yml `
