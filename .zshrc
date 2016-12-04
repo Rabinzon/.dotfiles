@@ -79,9 +79,13 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 
+stty -ixon
+
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-default-dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -92,11 +96,12 @@ BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-default-dark.sh"
   alias gcm="git commit -m"
   alias gcv="git commit -v"
   alias gb="git branch"
+  alias gd="git add"
   alias gur="git pull --rebase"
   alias gfa="git fetch --all"
   alias gpr="hub pull-request"
   alias gpb="git push -u origin"
   alias gbda='git branch --merged | command grep -vE "^(\*|\s*master\s*$)" | command xargs -n 1 git branch -d'
 
-fpath=(~/.zsh/completions $fpath) 
-autoload -U compinit && compinit  
+fpath=(~/.zsh/completions $fpath)
+autoload -U compinit && compinit
