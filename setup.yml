@@ -6,7 +6,7 @@
       apt_repository:
         repo: '{{item}}'
         update_cache: yes
-      with_items: '{{ppa}}'  
+      with_items: '{{ppa}}'
       become: yes
     - name: yarn
       command: bash -c 'sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3 && echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list'
@@ -18,9 +18,15 @@
       with_items: '{{apt}}'
       become: yes
 
+    - name: install with pip
+      pip:
+        name: '{{item}}'
+      with_items: '{{pip}}'
+      become: yes
+
     - name: install with npm
-      npm: 
-        name: '{{item}}' 
+      npm:
+        name: '{{item}}'
         global: yes
       with_items: '{{npm}}'
       become: yes
@@ -31,14 +37,14 @@
 
     - name: install oh my zsh
       command: bash -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"; chsh -s $(which zsh)'
-      become: yes 
+      become: yes
 
     - name: make default oh my zsh
       command: bash -c 'chsh -s $(which zsh)'
       become: yes
-    
+
     - name: setup config files
-      file: src=~/.dotfiles/{{item}} dest=~/{{item}} state=link force=true  
+      file: src=~/.dotfiles/{{item}} dest=~/{{item}} state=link force=true
       with_items: '{{configs}}'
 
     - name: Install PackageControl for Sublime
@@ -51,5 +57,5 @@
 
     - name: Buid Hub
       command: bash -c 'cd ~/hub/ && ./script/build -o ~/bin/hub'
-      become: yes 
-    
+      become: yes
+

@@ -1,4 +1,4 @@
-ppa: 
+ppa:
   - 'ppa:webupd8team/sublime-text-3'
   - 'ppa:ubuntu-lxc/lxd-stable'
 
@@ -15,14 +15,18 @@ apt:
   - vim
   - gitk
   - yarn
-  
+  - python-pip
+
+pip:
+  - docker-compose
+
 npm:
   - npm
   - n
 
 configs:
   - .vimrc
-  - .gitconfig 
+  - .gitconfig
   - .zshrc
 
 username: rabinzon
