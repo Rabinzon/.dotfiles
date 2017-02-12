@@ -89,6 +89,10 @@
   set pastetoggle=<F2>  " to fix weird behawiour on paste, etc
   set list              " show invisibles
   set lcs=tab:▸\ ,eol:¬ " Use the same symbols as TextMate for tabstops and EOLs
+  set autoindent
+  set noexpandtab
+  set tabstop=4
+  set shiftwidth=4
 
 " # Bundle
   set rtp+=~/.vim/bundle/vundle/
@@ -142,10 +146,11 @@
 " # Autocomplite
   Bundle 'ervandew/supertab'
   Bundle 'othree/html5.vim'
-  " Bundle 'mattn/emmet-vim'
-    " autocmd FileType html,css,scss,sass,stylus imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+  Bundle 'mattn/emmet-vim'
+    imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
   Bundle 'Raimondi/delimitMate'
   Bundle 'tomtom/tcomment_vim'
+
   "
 " # Snipmate
   Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -176,6 +181,8 @@
   Bundle 'gorodinskiy/vim-coloresque'
   au BufRead *.mustache set filetype=mustache " fix missed setf for mustache
   au BufRead *.json set filetype=json " fix missed setf for json
+  au BufRead *.styl set filetype=stylus
+  au BufRead *.jade set filetype=jade
   au BufRead,BufNewFile *.es6 set filetype=javascript
   " # Integrations
   " Bundle 'vim-scripts/TaskList.vim'
@@ -185,3 +192,4 @@
 
   syntax enable
   filetype plugin indent on
+  hi Normal ctermbg=none
