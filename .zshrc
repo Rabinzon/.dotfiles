@@ -104,6 +104,11 @@ BASE16_SHELL=$HOME/.config/base16-shell/
   alias gpr="hub pull-request"
   alias gpb="git push -u origin"
   alias gbda='git branch --merged | command grep -vE "^(\*|\s*master\s*$)" | command xargs -n 1 git branch -d'
+  alias nr="npm run"
+  alias gr="go run"
+  alias gf="go fmt"
+  alias dc="docker-compose"
 
 fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
+
