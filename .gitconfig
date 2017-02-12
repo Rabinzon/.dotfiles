@@ -5,3 +5,5 @@
 
 [push]
   default = simple  
+[diff]
+	tool = vim
