@@ -1,4 +1,5 @@
   set nocompatible
+  set mouse=a
   set nobackup
   set noswapfile
   set noeb vb t_vb=           " disable error beeping
@@ -67,129 +68,58 @@
     call cursor(l, c)
   endfun
 
-  " Automatically clean trailing whitespaces on save
-  autocmd BufWritePre *.* :call <SID>StripTrailingWhitespaces()
+" Automatically clean trailing whitespaces on save
+autocmd BufWritePre *.* :call <SID>StripTrailingWhitespaces()
+set relativenumber
 
-  " Encoding
-  set encoding=utf-8 nobomb
-  set fileencoding=utf-8 " Use UTF-8 without BOM
+" Encoding
+set encoding=utf-8 nobomb
+set fileencoding=utf-8 " Use UTF-8 without BOM
 
-  " # Search
-  set incsearch
-  set ignorecase " Ignore case of searches
-  set hlsearch   " Highlight searches
+" # Search
+set incsearch
+set ignorecase " Ignore case of searches
+set hlsearch   " Highlight searches
 
 " # Ident
-  set tabstop=4
-  set shiftwidth=2
-  set smarttab
-  set expandtab
-  set autoindent
-  set smartindent
-  set pastetoggle=<F2>  " to fix weird behawiour on paste, etc
-  set list              " show invisibles
-  set lcs=tab:▸\ ,eol:¬ " Use the same symbols as TextMate for tabstops and EOLs
-  set autoindent
-  set noexpandtab
-  set tabstop=4
-  set shiftwidth=4
+set tabstop=4
+set shiftwidth=2
+set smarttab
+set expandtab
+set autoindent
+set smartindent
+set pastetoggle=<F2>  " to fix weird behawiour on paste, etc
+set list              " show invisibles
+set lcs=tab:▸\ ,eol:¬ " Use the same symbols as TextMate for tabstops and EOLs
+set autoindent
+set noexpandtab
+set tabstop=4
+set shiftwidth=4
+syntax enable
+filetype plugin indent on
+hi Normal ctermbg=none
 
-" # Bundle
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+call plug#begin('~/.vim/plugged')
 
-" # Timing
-  " Bundle 'wakatime/vim-wakatime'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'kien/ctrlp.vim'
+Plug 'digitaltoad/vim-pug'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'wavded/vim-stylus'
+Plug 'isRuslan/vim-es6'
+Plug 'djoshea/vim-autoread'
+Plug 'mileszs/ack.vim'
+Plug 'mattn/emmet-vim'
+Plug 'dracula/vim'
 
-" # Extend vim
-  " use russian layout the only in the insert mode
-  " Bundle 'porqz/KeyboardLayoutSwitcher'
-  " Bundle 'mattesgroeger/vim-bookmarks'
-  " Bundle 'tpope/vim-surround'
-  Bundle 'easymotion/vim-easymotion'
-  Bundle 'godlygeek/tabular'
-    let mapleader=','
-      if exists(":Tabularize")
-        nmap <Leader>a= :Tabularize /=<CR>
-        vmap <Leader>a= :Tabularize /=<CR>
-        nmap <Leader>a: :Tabularize /:\zs<CR>
-        vmap <Leader>a: :Tabularize /:\zs<CR>
-      endif
-  Bundle 'gmarik/vundle'
-  Bundle 'shuvalov-anton/seoul256.vim'
-    set background=dark
-    colorscheme seoul256
-  Bundle 'scrooloose/nerdtree'
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-    map <C-n> :NERDTreeToggle<CR>
-  " Bundle 'jistr/vim-nerdtree-tabs'
-    let NERDTreeHighlightCursorline=0
-    silent! map <F4> :NERDTreeFind<CR>
-    let g:NERDTreeMapActivateNode="<F4>"
-    let g:NERDTreeMapPreview="<F3>"
-  Bundle 'kien/ctrlp.vim'
-  Bundle 'mileszs/ack.vim'
-  " Git goodies
-  Bundle 'tpope/vim-fugitive'
-  Bundle 'bling/vim-airline'
-  Bundle 'vim-airline/vim-airline-themes'
-    set laststatus=2                                  " vim-airline doesn't appear until I create a new split
-    let g:airline_theme='lucius'                      " Colorscheme for airline
-    let g:airline_left_sep = ''                       " Set custom left separator
-    let g:airline_right_sep = ''                      " Set custom right separator
-    let g:airline#extensions#tabline#enabled = 1      " Enable airline for tab-bar
-    let g:airline#extensions#tabline#show_buffers = 0 " Don't display buffers in tab-bar with single tab
-    let g:airline#extensions#tabline#fnamemod = ':t'  " Display only filename in tab
-    let g:airline_section_y = ''                      " Don't display encoding
-  Bundle 'Shougo/unite.vim'
+call plug#end()
+map <C-n> :NERDTreeToggle<CR>
 
-" # Autocomplite
-  Bundle 'ervandew/supertab'
-  Bundle 'othree/html5.vim'
-  Bundle 'mattn/emmet-vim'
-    imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-  Bundle 'Raimondi/delimitMate'
-  Bundle 'tomtom/tcomment_vim'
+syntax on
+color dracula
+set background=dark
 
-  "
-" # Snipmate
-  Bundle 'MarcWeber/vim-addon-mw-utils'
-  Bundle 'tomtom/tlib_vim'
-  Bundle 'garbas/vim-snipmate'
-  Bundle 'shuvalov-anton/vim-snippets'
-
-" # Linting
-  Bundle 'scrooloose/syntastic'
-    let g:syntastic_javascript_checkers = ['eslint']
-
-" # Syntax support
-  " Bundle 'fatih/vim-go'
-  " Bundle 'kchmck/vim-coffee-script'
-  Bundle 'groenewege/vim-less'
-  Bundle 'digitaltoad/vim-jade'
-  Bundle 'othree/javascript-libraries-syntax.vim'
-    let g:used_javascript_libs = 'underscore,backbone,react,flux'
-  Bundle 'pangloss/vim-javascript'
-  " Bundle 'mgechev/vim-jsx'
-  " Bundle 'tpope/vim-haml'
-  Bundle 'plasticboy/vim-markdown'
-    let g:vim_markdown_folding_disabled=1
-  " Bundle 'slim-template/vim-slim.git'
-  Bundle 'vim-scripts/liquid.vim'
-  Bundle 'mustache/vim-mustache-handlebars'
-  Bundle 'wavded/vim-stylus'
-  Bundle 'gorodinskiy/vim-coloresque'
-  au BufRead *.mustache set filetype=mustache " fix missed setf for mustache
-  au BufRead *.json set filetype=json " fix missed setf for json
-  au BufRead *.styl set filetype=stylus
-  au BufRead *.jade set filetype=jade
-  au BufRead,BufNewFile *.es6 set filetype=javascript
-  " # Integrations
-  " Bundle 'vim-scripts/TaskList.vim'
-  " Bundle 'junegunn/vim-github-dashboard'
-  " Bundle 'heavenshell/vim-jsdoc'
-    " let g:jsdoc_default_mapping=0
-
-  syntax enable
-  filetype plugin indent on
-  hi Normal ctermbg=none
+:au FileChangedShell * echo "Warning: File changed on disk"

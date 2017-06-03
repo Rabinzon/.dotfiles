@@ -3,7 +3,6 @@ ppa:
   - 'ppa:ubuntu-lxc/lxd-stable'
 
 apt:
-  - sublime-text-installer
   - nodejs-legacy
   - npm
   - golang
@@ -13,8 +12,7 @@ apt:
   - zsh
   - virtualbox
   - vim
-  - gitk
-  - yarn
+  - git
   - python-pip
 
 pip:
